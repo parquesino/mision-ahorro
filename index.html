@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Misión Ahorro</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="app-header">
+      <h1>Misión Ahorro</h1>
+      <p class="subtitle">Enseñando educación financiera jugando — Presupuesto semanal: <strong>200€</strong></p>
+    </header>
+
+    <main class="main">
+      <section class="controls">
+        <div class="tabs">
+          <button id="tab-gasto" class="tab active">Gasto</button>
+          <button id="tab-dias" class="tab">Días</button>
+          <button id="tab-historial" class="tab">Historial</button>
+        </div>
+
+        <div id="panel-gasto" class="panel">
+          <label class="big-label">Ticket de la compra (€)</label>
+          <input id="input-spent" inputmode="decimal" type="number" min="0" step="0.01" placeholder="Introduce el total del ticket" />
+          <div class="budget-visual">
+            <div class="budget-info">
+              <span>Presupuesto: 200€</span>
+              <span id="remaining-label">Restante: 200€</span>
+            </div>
+            <div class="progress-bar" aria-hidden="true">
+              <div id="progress-fill" class="progress-fill" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="panel-dias" class="panel hidden">
+          <label class="big-label">Días que duró el mercado</label>
+          <div class="counter">
+            <button id="days-decrease" class="circle-btn">−</button>
+            <div id="days-value" class="days-value">0</div>
+            <button id="days-increase" class="circle-btn">+</button>
+          </div>
+          <div class="calendar-visual">
+            <p class="small">Meta: 7 días</p>
+            <div id="calendar-grid" class="grid calendar-grid" aria-hidden="true"></div>
+            <p class="small muted">Cada casilla = 1 día. Los días extra aparecen en naranja.</p>
+          </div>
+        </div>
+
+        <div id="panel-historial" class="panel hidden">
+          <div class="history-actions">
+            <button id="clear-history" class="btn secondary">Borrar historial</button>
+          </div>
+          <ul id="history-list" class="history-list"></ul>
+        </div>
+
+        <div class="actions">
+          <button id="close-week" class="btn primary">Cerrar Semana (guardar resultado)</button>
+          <button id="reset" class="btn ghost">Reiniciar (no guardar)</button>
+        </div>
+      </section>
+
+      <aside class="cards">
+        <div class="cards-container">
+          <div class="card simon">
+            <div class="card-top">
+              <div class="avatar">🪵</div>
+              <div class="name">Simón (11)</div>
+            </div>
+            <div class="amount">
+              <div class="amount-label">Premio</div>
+              <div class="amount-value" id="amount-simon">0.00€</div>
+            </div>
+            <div class="theme-badge">Minecraft</div>
+          </div>
+
+          <div class="card mateo">
+            <div class="card-top">
+              <div class="avatar">⭐</div>
+              <div class="name">Mateo (10)</div>
+            </div>
+            <div class="amount">
+              <div class="amount-label">Premio</div>
+              <div class="amount-value" id="amount-mateo">0.00€</div>
+            </div>
+            <div class="theme-badge">Brawl Stars</div>
+          </div>
+
+          <div class="card violeta">
+            <div class="card-top">
+              <div class="avatar">🐶</div>
+              <div class="name">Violeta (6)</div>
+            </div>
+            <div class="amount">
+              <div class="amount-label">Premio</div>
+              <div class="amount-value" id="amount-violeta">0.00€</div>
+            </div>
+            <div class="theme-badge">Bluey</div>
+          </div>
+        </div>
+
+        <div class="pot-summary">
+          <div class="pot-row">
+            <div>Bote de Premios:</div>
+            <div id="pot-total">0.00€</div>
+          </div>
+          <div class="pot-row">
+            <div>Dividido entre 3:</div>
+            <div id="per-child">0.00€ / niño</div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <small>Guardado automáticamente en el navegador (localStorage).</small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
