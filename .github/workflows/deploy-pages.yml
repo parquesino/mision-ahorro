@@ -1,3 +1,5 @@
+# Commit message suggestion (put this in the GitHub commit box, not inside the file):
+# Fix: formateo correcto YAML para deploy Pages
 name: Deploy to GitHub Pages
 
 on:
