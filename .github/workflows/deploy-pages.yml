@@ -1,7 +1,7 @@
-# Commit message suggestion (put this in the GitHub commit box):
-# Fix: update actions versions to avoid deprecated upload-artifact v3
+# Commit message suggestion (poner en el cuadro de "Commit changes"):
+# Fix: use alternative deploy action (github-pages-deploy-action) to avoid deprecated upload-artifact v3
 
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (via gh-pages branch)
 
 on:
   push:
@@ -11,21 +11,16 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # UPDATED: use a newer release of upload-pages-artifact that does not depend on upload-artifact@v3.
-      # If your repo's marketplace shows a different latest version, use that one.
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+      # Si necesitas excluir archivos, añade un step que borre lo que no quieras publicar.
+      # Deploy: usa JamesIves action para publicar el contenido de la carpeta raíz en la rama gh-pages.
+      - name: Deploy to GitHub Pages (gh-pages)
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+          branch: gh-pages           # rama a crear/usar para publicar
+          folder: .                  # carpeta a publicar (root)
+          token: ${{ secrets.GITHUB_TOKEN }}
